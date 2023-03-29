@@ -1,0 +1,13 @@
+services:
+  redis:
+    # docker load -i redis-test
+    image: redis:test
+    container_name: redis
+    volumes:
+      # Put redis.conf in redis/
+      - "/home/heddxh/redis/:/usr/local/etc/redis"
+      - "/home/heddxh/redis/data/:/data"
+    # ports:
+    #   - "6379:6379"
+    environment:
+      - REDIS_PASSWORD = 123456
