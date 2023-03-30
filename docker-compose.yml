@@ -1,15 +1,15 @@
 services:
   redis:
-    image: redis-test
+    image: redis:latest
     container_name: redis
     volumes:
-      # Put redis.conf in redis/
-      - "/home/heddxh/redis/:/usr/local/etc/redis"
-      - "/home/heddxh/redis/data/:/data"
+      - type: bind
+        source: ./redis.conf
+        target: /usr/local/etc/redis.conf
+      - ./data/:/data/
     networks:
       - redis-network
-    environment:
-      - REDIS_PASSWORD = 123456
+    command: redis-server /usr/local/etc/redis.conf
 
 networks:
   redis-network:

@@ -1,17 +1,22 @@
 # Redis 模板
 
-### 导入本地镜像
+### 修改配置文件 `redis.conf`
 
-```bash
-docker load -i redis-test
+- 修改持久化数据库文件名以及连接密码
+```conf
+dbfilename <yourname>
+requirepass <password>
 ```
 
 ### 启动 docker compose
 
-- 修改`docker-compose.yml`中的密码（环境变量）
+- 修改持久化数据存放目录
+```yml
+volumes:
+  - path/to/db/dic/:/data/
+```
 
 - 将其他服务加入 docker 网络
-
 ```yaml
 services:
   app:
