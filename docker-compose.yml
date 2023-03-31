@@ -1,15 +1,14 @@
 services:
   redis:
-    image: redis:latest
+    build: .
     container_name: redis
     volumes:
-      - type: bind
-        source: ./redis.conf
-        target: /usr/local/etc/redis.conf
       - ./data/:/data/
     networks:
       - redis-network
-    command: redis-server /usr/local/etc/redis.conf
+    environment:
+      - REDIS_PASSWORD=123456
+      - DB_FILENAME=dump.rdb
 
 networks:
   redis-network:
